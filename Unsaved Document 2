@@ -1,0 +1,32 @@
+# website address for couch db
+curl http://127.0.0.1:5984/
+
+# Databases address
+curl -X GET http://127.0.0.1:5984/_all_dbs
+
+# Database creation and deletion
+curl -X PUT http://127.0.0.1:5984/baseball
+curl -X DELETE http://127.0.0.1:5984/baseball
+
+# Couch DB utils in the browser
+http://127.0.0.1:5984/_utils
+
+# _design documents
+CouchDB looks for views and other application functions in the _design documents.
+
+# mydesign.json
+{
+	"_id" : "_design/example"
+	"views" : {
+	  "foo" : {
+	    "map : function(doc) { emit(doc.id,doc.rev)}"
+		}
+	}
+}
+
+# Put mydesign.json in db
+curl -X PUT http://127.0.0.1:5984/basic/_design/example -d @mydesign.json
+
+
+# assets
+The raw images, Javascript, CSS and HTML assets are stored in the _attachments field. 
